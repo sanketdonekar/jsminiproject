@@ -1,93 +1,104 @@
 var canvas;
 var image;
-var outImg;
 var avgColor;
+var finput;
 function upload(){
-    var finput = document.getElementById("fileinput");
+    finput = document.getElementById("fileinput");
     canvas = document.getElementById("can");
     image = new SimpleImage(finput);
     image.drawTo(canvas);
 }
-function makegrey(){
+function checkImageLoad() {
+    if ((image == null) || !image.complete()) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+function doReset() {
+    image = new SimpleImage(finput);
+    image.drawTo(canvas);
+    rainbowout = new simpleImage(finput);
+    rainbowout.drawTo(canvas);
+}
+
+function makegrey() {
+    if ((checkImageLoad())) {
+      grey();
+      image.drawTo(canvas);
+    } else {
+      alert("Image Not Loaded");
+    }
+  } 
+function grey(){
     for (var px of image.values()){
         var avg = ((px.getRed()+px.getGreen()+ px.getBlue())/3);
         px.setRed(avg);
         px.setGreen(avg);
         px.setBlue(avg);
     }
-    var can2 = document.getElementById("can");
-
-    image.drawTo(can2);
 }
-function clrcompo(){
-    var fgcan = document.getElementById("can");
-    var context1 = fgcan.getContext("2d");
-    context1.clearRect(0, 0, fgcan.width, fgcan.height);
-}
-function checkImageLoad() {
-    if ((image === null) || !image.complete()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-function green(){
+  function redhue(){
     if(checkImageLoad()){
-        makegreen();
+        red();
+        image.drawTo(canvas);
     }
     else{
         alert("Image not loaded");
     }
 }
-function redhue(){
-    for (var px of image.values()){
+function red(){
+    for(var px of image.values()){
         var avg = ((px.getRed()+px.getGreen()+ px.getBlue())/3);
         if(avg < 126){
         px.setRed(avg*2);
         px.setGreen(0);
         px.setBlue(0);
+         }
+        else{
+            px.setRed(255);
+            px.setGreen(2*avg - 255);
+            px.setBlue(2*avg - 255);
+        }   
+    }
+}
+/*function clrcompo(){
+    var fgcan = document.getElementById("can");
+    var context1 = fgcan.getContext("2d");
+    context1.clearRect(0, 0, fgcan.width, fgcan.height);
+}*/
+function green(){
+    if(checkImageLoad()){
+        makegreen();
+        image.drawTo(canvas);  
     }
     else{
-        px.setRed(255);
-        px.setGreen(2*avg - 255);
-        px.setBlue(2*avg - 255);
-    }  
+        alert("Image not loaded");
     }
-    var can2 = document.getElementById("can");
-
-    image.drawTo(can2); 
 }
-
 function makegreen(){
     for (var px of image.values()){
         var avg = ((px.getRed()+px.getGreen()+ px.getBlue())/3);
         px.setRed(avg);
         px.setGreen(avg*2);
         px.setBlue(avg);
-    }
-    var can2 = document.getElementById("can");
-
-    image.drawTo(can2);   
+    } 
 }
 function doRainbow() {
-    if ((checkImageLoad())) {
+    if (checkImageLoad()) {
       drawRainbow();
-      outImg.drawTo(canvas);
+      image.drawTo(canvas);
     } else {
       alert("Image Not Loaded");
     }
   } 
-
-function drawRainbow() {
-    outImg = new SimpleImage(image);
+  function drawRainbow() {
+    
     var rectHeight = image.getHeight();
     var rectSegment = parseInt(rectHeight) / 7;
-    var Y;
-    var X;
-    for (pixel of outImg.values()) {
+    for (pixel of image.values()) {
      var X = pixel.getX();
      var Y = pixel.getY();
-  //    outImage.setPixel(X, Y, pixel);
      avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
       if (Y >= 6 * parseInt(rectSegment)) {
         doRed();
@@ -106,6 +117,7 @@ function drawRainbow() {
       }
     }
   }
+
   function doViolet() {
     if (avgColor < 128) {
       red = Math.round(1.6 * avgColor);

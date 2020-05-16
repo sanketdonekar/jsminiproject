@@ -7,26 +7,29 @@
     <title>Mini Project</title>
     <script src="script.js"></script>
 </head>
-<body id="body">
+<body>
     <h1 id="h1">
         Mini Project
     </h1>
     <h2 id="h2">
         Filter Fun
     </h2>
+    <div style="text-align:center">
     <canvas id="can">
 
     </canvas>
-    <h3 id="h3">Load Image:</h3>
+    </div>
+    <h3 id="h3">Load Image</h3>
     <p id="p">
-        SelectFile:<input type="file" name="" id="fileinput" multiple="false" accept="image/*" onchange="upload()"><br>
+        <div style="text-align:center">
+        <input type="file" value="Upload Image" id="fileinput" multiple="false" accept="image/*" onchange="upload()"><br>
         <h3 id="h3">Choose Filters:</h3>
         <input type="button" value="Grey" id="Grey" onclick="makegrey()">
-        <input type="button" value="RainbowEffect" id="rainbow" onclick="doRainbow()">
         <input type="button" value="Red Hue" onclick="redhue()">
-        <input type="button" value="Green" id="Green" onclick="green()"><br><br>
-        <input type="button" value="Clear Canvas" onclick="clrcompo()">
-
+        <input type="button" value="Green" id="Green" onclick="green()">
+        <input type="button" value="RainbowEffect" id="rainbow" onclick="doRainbow()"><br><br>
+        <input type="button" value="Reset Image" onclick="doReset()">
+    </div>
     </p>
 </body>
 </html>

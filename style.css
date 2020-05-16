@@ -1,34 +1,28 @@
 #h1{
     text-align: center;
     font-family: sf pro text;
-    color: ivory
+    color: black;
 ;
 
 }
 #h2{
-    text-align: left;
+    text-align: center;
     font-family: sf pro text;
-    color: ivory;
+    color: black;
 }
 #h3{
-    text-align: left;
+    text-align: center;
     font-family: sf pro text;
-    color: ivory;
+    color: black;
 }
 #p{
-    text-align: left;
+    text-align: center;
     font-family: sf pro text;
-    color: ivory;
+    color: black;
 }
 #can{
-
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 500px;
     border: 2px solid rgb(197, 212, 228) ;
-    align-items: left;
-}
-#body{
-    background-position: right;
-    background-size: contain;
-    background-image: url(https://news.itmo.ru/images/news_trans/big/p8629.jpg);
+    
 }
