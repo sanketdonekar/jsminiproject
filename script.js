@@ -31,19 +31,38 @@ function checkImageLoad() {
       return true;
     }
   }
-function red(){
+function green(){
     if(checkImageLoad()){
-        makered();
+        makegreen();
     }
     else{
         alert("Image not loaded");
     }
 }
-function makered(){
+function redhue(){
     for (var px of image.values()){
         var avg = ((px.getRed()+px.getGreen()+ px.getBlue())/3);
-        px.setRed(avg + 200);
-        px.setGreen(avg);
+        if(avg < 126){
+        px.setRed(avg*2);
+        px.setGreen(0);
+        px.setBlue(0);
+    }
+    else{
+        px.setRed(255);
+        px.setGreen(2*avg - 255);
+        px.setBlue(2*avg - 255);
+    }  
+    }
+    var can2 = document.getElementById("can");
+
+    image.drawTo(can2); 
+}
+
+function makegreen(){
+    for (var px of image.values()){
+        var avg = ((px.getRed()+px.getGreen()+ px.getBlue())/3);
+        px.setRed(avg);
+        px.setGreen(avg*2);
         px.setBlue(avg);
     }
     var can2 = document.getElementById("can");
