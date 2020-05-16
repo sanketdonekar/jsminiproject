@@ -17,11 +17,14 @@
     <canvas id="can">
 
     </canvas>
-    <p>
-        <h3>Load Image:</h3>
-        SelectFile: <input type="file" name="" id="fileinput" accept="image/*" onchange="upload()"><br>
-        <h3>Filters:</h3>
-        <input type="button" value="MakeGrey" id="makegrey" onclick="makegrey()">
+    <h3 id="h3">Load Image:</h3>
+    <p id="p">
+        SelectFile:<input type="file" name="" id="fileinput" multiple="false" accept="image/*" onchange="upload()"><br>
+        <h3 id="h3">Choose Filters:</h3>
+        <input type="button" value="Grey" id="makegrey" onclick="makegrey()">
+        <input type="button" value="RainbowEffect" id="rainbow" onclick="doRainbow()">
+        <input type="button" value="Red" id="red" onclick="red()"><br><br>
+        <input type="button" value="Clear" onclick="clrcompo()">
 
     </p>
 </body>

@@ -1,19 +1,34 @@
 #h1{
     text-align: center;
     font-family: sf pro text;
+    color: ivory
+;
 
 }
 #h2{
     text-align: left;
     font-family: sf pro text;
+    color: ivory;
+}
+#h3{
+    text-align: left;
+    font-family: sf pro text;
+    color: ivory;
+}
+#p{
+    text-align: left;
+    font-family: sf pro text;
+    color: ivory;
 }
 #can{
 
     width: 600px;
-    height: 500px;
-    border: 1px solid rgb(119, 157, 196) ;
+    height: 600px;
+    border: 2px solid rgb(197, 212, 228) ;
     align-items: left;
 }
 #body{
-    background-image: url("https://cdn.britannica.com/70/191970-131-A85628DA/Color-wheel-light-color-spectrum.jpg");
+    background-position: right;
+    background-size: contain;
+    background-image: url(https://news.itmo.ru/images/news_trans/big/p8629.jpg);
 }
