@@ -7,7 +7,7 @@
     <title>Mini Project</title>
     <script src="script.js"></script>
 </head>
-<body>
+<body id="body">
     <h1 id="h1">
         Mini Project
     </h1>
@@ -19,16 +19,25 @@
 
     </canvas>
     </div>
-    <h3 id="h3">Load Image</h3>
+    <div class="" style="text-align: center;margin-top:5%">
+        <button class="icon-btn add-btn">
+            <div class="add-icon"></div>
+            <input type="file" value="Upload Image" id="fileinput" multiple="false" accept="image/*" onchange="upload()">
+            <div class="btn-txt">Add</div>
+        </button>
+    </div>
+    <div style="text-align: center; margin-top:30px;">
+    <hr class="main-hr" />
     <p id="p">
         <div style="text-align:center">
-        <input type="file" value="Upload Image" id="fileinput" multiple="false" accept="image/*" onchange="upload()"><br>
         <h3 id="h3">Choose Filters:</h3>
-        <input type="button" value="Grey" id="Grey" onclick="makegrey()">
-        <input type="button" value="Red Hue" onclick="redhue()">
-        <input type="button" value="Green" id="Green" onclick="green()">
-        <input type="button" value="RainbowEffect" id="rainbow" onclick="doRainbow()"><br><br>
-        <input type="button" value="Reset Image" onclick="doReset()">
+        <input type="button" value="Grey" id="btn" onclick="makegrey()">
+        <input type="button" value="Red Hue" id="btn" onclick="redhue()">
+        <input type="button" value="Green" id="btn" onclick="green()">
+        <input type="button" value="RainbowEffect" id="btn" onclick="doRainbow()">
+        <input type="button" value="Blur" id="btn" onclick="makeBlur()">
+        <br>
+        <input type="button" value="Reset Image" id="btn" onclick="doReset()">
     </div>
     </p>
 </body>

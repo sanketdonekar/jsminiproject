@@ -1,7 +1,14 @@
 var canvas;
 var image;
 var finput;
+var rand;
 function upload(){
+    /*finput = document.getElementById("fileinput")
+    image = new SimpleImage(finput);
+    var can = document.getElementById("can");
+    canvas = can.getContext("2d");
+    image.drawTo(canvas); */
+
     finput = document.getElementById("fileinput");
     image = new SimpleImage(finput);
     canvas = document.getElementById("can");
@@ -177,6 +184,40 @@ function doRainbow() {
         } 
     }
 }
+function makeBlur(){
+    if (checkImageLoad()){
+        blur();
+    } 
+    else{
+      alert("Image Not Loaded");
+    }
+  }
+
+  function blur() {
+    for (var pixel of image.values()) {
+      var x = pixel.getX();
+      var y = pixel.getY();
+      var repx = x + Math.floor(Math.random() * 11);
+      var repy = y + Math.floor(Math.random() * 11);
+      var repx1 = x - Math.floor(Math.random() * 11);
+      var repy1 = y - Math.floor(Math.random() * 11);
+      if (Math.random() > 0.5) {
+        if (repx < image.getWidth() && repy < image.getHeight()) {
+          image.setPixel(repx, repy, pixel);
+        } else {
+          if (repx > image.getWidth() && repy < image.getHeight()) {
+            image.setPixel(repx1, repy, pixel);
+          }
+          if (repx < image.getWidth() && repy > image.getHeight()) {
+            image.setPixel(repx, repy1, pixel);
+          }
+        }
+      }
+    }
+    image.drawTo(canvas);
+  }
+  
+  
 
 
 
