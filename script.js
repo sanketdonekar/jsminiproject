@@ -1,11 +1,10 @@
 var canvas;
 var image;
-var avgColor;
 var finput;
 function upload(){
     finput = document.getElementById("fileinput");
-    canvas = document.getElementById("can");
     image = new SimpleImage(finput);
+    canvas = document.getElementById("can");
     image.drawTo(canvas);
 }
 function checkImageLoad() {
@@ -13,13 +12,12 @@ function checkImageLoad() {
       return false;
     } else {
       return true;
-    }
+    }  
   }
 function doReset() {
     image = new SimpleImage(finput);
     image.drawTo(canvas);
-    rainbowout = new simpleImage(finput);
-    rainbowout.drawTo(canvas);
+
 }
 
 function makegrey() {
@@ -79,148 +77,107 @@ function green(){
 function makegreen(){
     for (var px of image.values()){
         var avg = ((px.getRed()+px.getGreen()+ px.getBlue())/3);
-        px.setRed(avg);
-        px.setGreen(avg*2);
-        px.setBlue(avg);
+        if(avg < 126){
+            px.setRed(avg);
+            px.setGreen(avg*2);
+            px.setBlue(avg);
+        }
+        else{
+            px.setRed(2*avg-255);
+            px.setGreen(255);
+            px.setBlue(2*avg - 255);
+        }
+
     } 
 }
 function doRainbow() {
     if (checkImageLoad()) {
-      drawRainbow();
-      image.drawTo(canvas);
-    } else {
+        rainbow();
+        image.drawTo(canvas);
+    } 
+    else{
       alert("Image Not Loaded");
     }
   } 
-  function drawRainbow() {
-    
-    var rectHeight = image.getHeight();
-    var rectSegment = parseInt(rectHeight) / 7;
-    for (pixel of image.values()) {
-     var X = pixel.getX();
-     var Y = pixel.getY();
-     avgColor = (pixel.getRed() + pixel.getGreen() + pixel.getBlue()) / 3;
-      if (Y >= 6 * parseInt(rectSegment)) {
-        doRed();
-      } else if (Y >= (5 * parseInt(rectSegment))) {
-        doOrange();
-      } else if (Y >= (4 * parseInt(rectSegment))) {
-        doYellow();
-      } else if (Y >= (3 * parseInt(rectSegment))) {
-        doGreen();
-      } else if (Y >= (2 * parseInt(rectSegment))) {
-        doBlue();
-      } else if (Y >= parseInt(rectSegment)) {
-        doIndigo();
-      } else {
-        doViolet();
-      }
+  function rainbow(){
+      for (var pixel of image.values()){
+        var y = pixel.getY();
+        var h = image.getHeight();
+        var avg = (pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3;
+        if (y < h/7){
+        if (avg < 128) {
+            pixel.setRed(2*avg);
+            pixel.setGreen(0);
+            pixel.setBlue(0);
+          } else {
+            pixel.setRed(255);
+            pixel.setGreen(2*avg-255);
+            pixel.setBlue(2*avg-255);
+          }
+        }else if (y < 2*h/7){
+          if (avg < 128) {
+            pixel.setRed(2*avg);
+            pixel.setGreen(0.8*avg);
+            pixel.setBlue(0);
+          } else {
+            pixel.setRed(255);
+            pixel.setGreen(1.2*avg-51);
+            pixel.setBlue(2*avg-255);
+          }
+        }else if (y < 3*h/7){
+          if (avg < 128) {
+            pixel.setRed(2*avg);
+            pixel.setGreen(2*avg);
+            pixel.setBlue(0);
+          } else {
+            pixel.setRed(255);
+            pixel.setGreen(255);
+            pixel.setBlue(2*avg-255);
+          }
+        }else if (y < 4*h/7){
+          if (avg < 128) {
+            pixel.setRed(0);
+            pixel.setGreen(2*avg);
+            pixel.setBlue(0);
+          } else {
+            pixel.setRed(2*avg-255);
+            pixel.setGreen(255);
+            pixel.setBlue(2*avg-255);
+          }
+        }else if (y < 5*h/7){
+          if (avg < 128) {
+            pixel.setRed(0);
+            pixel.setGreen(0);
+            pixel.setBlue(2*avg);
+          } else {
+            pixel.setRed(2*avg-255);
+            pixel.setGreen(2*avg-255);
+            pixel.setBlue(255);
+          }
+        }else if (y < 6*h/7){
+          if (avg < 128) {
+            pixel.setRed(0.8*avg);
+            pixel.setGreen(0);
+            pixel.setBlue(2*avg);
+          } else {
+            pixel.setRed(1.2*avg-51);
+            pixel.setGreen(2*avg-255);
+            pixel.setBlue(255);
+          }
+        } else {
+          if (avg < 128) {
+            pixel.setRed(1.6*avg);
+            pixel.setGreen(0);
+            pixel.setBlue(1.6*avg);
+          } else {
+            pixel.setRed(0.4*avg+153);
+            pixel.setGreen(2*avg-255);
+            pixel.setBlue(0.4*avg+153);
+          }
+        } 
     }
-  }
+}
 
-  function doViolet() {
-    if (avgColor < 128) {
-      red = Math.round(1.6 * avgColor);
-      green = 0;
-      blue = Math.round(1.6 * avgColor);
-    } else {
-      red = Math.round(0.4 * avgColor + 153 );
-      green = Math.round(2 * avgColor - 255);
-      blue = Math.round(0.4 * avgColor + 153 );
-    }
-    pixel.setRed(red);
-    pixel.setGreen(green);
-    pixel.setBlue(blue);
-  }
-  
-  function doIndigo() {
-    if (avgColor < 128) {
-      red = Math.round(.8 * avgColor);
-      green = 0;
-      blue = Math.round(2 * avgColor);
-    } else {
-      red = Math.round(1.2 * avgColor - 51);
-      green = Math.round(2*avgColor - 255);
-      blue = 255;
-    }
-    pixel.setRed(red);
-    pixel.setGreen(green);
-    pixel.setBlue(blue);
-  }
-  
-  function doBlue() {
-   if (avgColor < 128) {
-      red = 0;
-      green = 0;
-      blue = Math.round(2*avgColor);
-    } else {
-      red = Math.round(2*avgColor-255);
-      green =Math.round(2*avgColor-255);
-      blue = 255;
-    }
-    pixel.setRed(red);
-    pixel.setGreen(green);
-    pixel.setBlue(blue);
-  }
-  function doGreen() {
-    if (avgColor < 128) {
-      red = 0;
-      green = Math.round(2*avgColor);
-      blue = 0;
-    } else {
-      red = Math.round(2*avgColor-255);
-      green = 255;
-      blue = Math.round(2*avgColor-255);
-    }
-    pixel.setRed(red);
-    pixel.setGreen(green);
-    pixel.setBlue(blue);
-  }
-  
-  function doYellow() {
-    if (avgColor < 128) {
-      red = Math.round(2 * avgColor);
-      green = Math.round(2 * avgColor);
-      blue = 0;
-    } else {
-      red = 255;
-      green = 255;
-      blue = Math.round(2 * avgColor - 255);
-    }
-    pixel.setRed(red);
-    pixel.setGreen(green);
-    pixel.setBlue(blue);
-  }
-  
-  function doOrange() {
-     if (avgColor < 128) {
-      red = Math.round(2 * avgColor);
-      green = Math.round(.8 * avgColor);
-      blue = 0;
-    } else {
-      red = 255;
-      green = Math.round(1.2 * avgColor - 51);
-      blue =  Math.round(2 * avgColor - 255);
-    }
-    pixel.setRed(red);
-    pixel.setGreen(green);
-    pixel.setBlue(blue);
-  }
-  
-  function doRed() {
-    if (avgColor < 128) {
-      red = Math.round(2*avgColor);
-      green = 0;
-      blue = 0;
-    } else {
-      red = 255;
-      green = Math.round(2*avgColor-255);
-      blue = Math.round(2*avgColor-255);
-    }
-    pixel.setRed(red);
-    pixel.setGreen(green);
-    pixel.setBlue(blue);
-  }
 
 
 
