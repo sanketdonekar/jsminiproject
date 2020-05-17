@@ -2,6 +2,7 @@ var canvas;
 var image;
 var finput;
 var rand;
+
 function upload(){
     /*finput = document.getElementById("fileinput")
     image = new SimpleImage(finput);
@@ -216,13 +217,6 @@ function makeBlur(){
     }
     image.drawTo(canvas);
   }
-  
-  
-
-
-
-
-
 
 
 
