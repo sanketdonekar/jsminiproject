@@ -14,8 +14,8 @@
     color: black;
 }
 #can{
-    width: 500px;
-    height: 400px; 
+    width: 400px;
+    height: 300px; 
     border: 2px solid rgb(80, 70, 80) ;
     margin: 20px;    
     border-radius: 5px;
@@ -39,33 +39,6 @@
     border-radius: 12px;
     padding: 10px 20px;
 }
-.fileinput {
 
-    font-family: "SF-Pro-Text-Semibold";
-    margin: 20px;
-    opacity: 5.0;
- 
-    /* IE 8 */
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
- 
-    /* IE 5-7 */
-    filter: alpha(opacity=0);
-  
-    /* Netscape or and older firefox browsers */
-    -moz-opacity: 0.0;
- 
-    /* older Safari browsers */
-    -khtml-opacity: 0.0;
-    right: 1;
-    width: 6%;
-    height:3%;
- }
-#upbtn{
-    font-family: "SF-Pro-Text-Semibold";
-    position: relative;
-   line-height: 30px;
-   text-align: center;
-   margin: 20px;
-}
 
 
